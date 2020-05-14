@@ -7,16 +7,23 @@ public class PhoneNumberValidation {
 	
 	public void phoneNumberValidation(String number){	
 	String formattedNumber = "";
+	//char[] convertedString = number.toCharArray();
 		
 	for(int i = 0; i < number.length(); i++)
 	{	
-		if(number.charAt(i) == ' ' || 
+		if (Character.isLetter(number.charAt(i)) == true){
+			System.out.println("not a valid input,"
+					+ " please enter a valid 10 digit phone number.");
+			driver.UserInput();
+		}
+		else if(number.charAt(i) == ' ' || 
 		   number.charAt(i) == '('||
 		   number.charAt(i) == ')' ||
 		   number.charAt(i) == '-')
 		{
 			continue;
 		}
+		
 		else {
 			   formattedNumber += number.charAt(i);
 		}
@@ -32,7 +39,7 @@ public class PhoneNumberValidation {
 	}
 	
 	else if (formattedNumber.length() < 10 
-			|| formattedNumber.length() > 10 )
+			|| formattedNumber.length() > 10 && formattedNumber.contains("[a-zA-z]+") == false  )
 	{
 		System.out.println("not a valid input,"
 				+ " please enter a valid 10 digit phone number.");
